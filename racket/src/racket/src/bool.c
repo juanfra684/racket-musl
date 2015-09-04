@@ -348,10 +348,16 @@ XFORM_NONGCING static int is_eqv(Scheme_Object *obj1, Scheme_Object *obj2)
 END_XFORM_SKIP;
 #endif
 
+#ifdef MZ_XFORM
+START_XFORM_SKIP;
+#endif
 int scheme_eqv (Scheme_Object *obj1, Scheme_Object *obj2)
 {
   return (is_eqv(obj1, obj2) > 0);
 }
+#ifdef MZ_XFORM
+END_XFORM_SKIP;
+#endif
 
 #ifdef MZ_XFORM
 START_XFORM_SKIP;

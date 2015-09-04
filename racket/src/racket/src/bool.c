@@ -288,6 +288,9 @@ XFORM_NONGCING static MZ_INLINE int double_eqv(double a, double b)
 END_XFORM_SKIP;
 #endif
 
+#ifdef MZ_XFORM
+START_XFORM_SKIP;
+#endif
 XFORM_NONGCING static int is_eqv(Scheme_Object *obj1, Scheme_Object *obj2)
 {
   Scheme_Type t1, t2;
@@ -341,12 +344,18 @@ XFORM_NONGCING static int is_eqv(Scheme_Object *obj1, Scheme_Object *obj2)
     }
   }
 }
+#ifdef MZ_XFORM
+END_XFORM_SKIP;
+#endif
 
 int scheme_eqv (Scheme_Object *obj1, Scheme_Object *obj2)
 {
   return (is_eqv(obj1, obj2) > 0);
 }
 
+#ifdef MZ_XFORM
+START_XFORM_SKIP;
+#endif
 XFORM_NONGCING int is_fast_equal (Scheme_Object *obj1, Scheme_Object *obj2, int for_chaperone)
 {
   Scheme_Type t1, t2;
@@ -432,6 +441,9 @@ XFORM_NONGCING int is_fast_equal (Scheme_Object *obj1, Scheme_Object *obj2, int 
 
  return -1;
 }
+#ifdef MZ_XFORM
+END_XFORM_SKIP;
+#endif
 
 int is_slow_equal (Scheme_Object *obj1, Scheme_Object *obj2)
 {

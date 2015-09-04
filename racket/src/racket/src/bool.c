@@ -207,9 +207,6 @@ int scheme_eq (Scheme_Object *obj1, Scheme_Object *obj2)
 START_XFORM_SKIP;
 #endif
 XFORM_NONGCING static MZ_INLINE int mz_long_double_eqv(long_double a, long_double b)
-#ifdef MZ_XFORM
-END_XFORM_SKIP;
-#endif
 {
 # ifndef NAN_EQUALS_ANYTHING
   if (!long_double_eqv(a, b)) {
@@ -244,14 +241,15 @@ END_XFORM_SKIP;
   return 1;
 # endif
 }
+#ifdef MZ_XFORM
+END_XFORM_SKIP;
 #endif
+#endif
+
 #ifdef MZ_XFORM
 START_XFORM_SKIP;
 #endif
 XFORM_NONGCING static MZ_INLINE int double_eqv(double a, double b)
-#ifdef MZ_XFORM
-END_XFORM_SKIP;
-#endif
 {
 # ifndef NAN_EQUALS_ANYTHING
   if (a != b) {
@@ -286,6 +284,9 @@ END_XFORM_SKIP;
   return 1;
 # endif
 }
+#ifdef MZ_XFORM
+END_XFORM_SKIP;
+#endif
 
 XFORM_NONGCING static int is_eqv(Scheme_Object *obj1, Scheme_Object *obj2)
 {
